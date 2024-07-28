@@ -160,21 +160,23 @@ if init_input == 2:
     # Password Extractor
     password = str(df["password"][((len(df))-1)])
 
-    #with open(os.path.join(path,filename),"w") as fp:
-    #    pass
-
     # Creates a new folder as per the user
     new_folder(filename)
 
+
+##Previous Method is now discarded
+    #with open(os.path.join(path,filename),"w") as fp:
+    #    pass
     ##new_file = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\"+filename
     ##first_row = ["Work","Time","Date","Year","E.Time"]
-
-
     #with open(new_file, 'a') as csvfile:
     #    csvwriter = writer(csvfile, lineterminator='\n')
     #    csvwriter.writerow(first_row)
     #    csvfile.close()
 
+
+
+##Processing Animation
     animate_processing()
 
 
