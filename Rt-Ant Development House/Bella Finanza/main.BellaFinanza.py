@@ -41,8 +41,6 @@ def fiven():
     print("\n\n\n")
 
 ## Function for Wrong entry
-
-
 def invalid_entry(init_input):
     while True:
         if init_input not in list:
@@ -52,6 +50,10 @@ def invalid_entry(init_input):
             init_input = int(init_input)
             break
 
+##Function for new folder
+def new_folder(new_folder_name):
+    new_folder_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
+    os.mkdir(new_folder_path)
 
 
 ##  [ MAIN PROGRAM ] Starts Here,
@@ -153,23 +155,25 @@ if init_input == 2:
     # creating a csv file for newly registered members.
     path = (r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server")
     member_id_extracted= df["tag"][((len(df))-1)]
-    filename = member_id_extracted+".csv"
+    filename = member_id_extracted
 
     # Password Extractor
     password = str(df["password"][((len(df))-1)])
 
-    with open(os.path.join(path,filename),"w") as fp:
-        pass
+    #with open(os.path.join(path,filename),"w") as fp:
+    #    pass
 
-    new_file = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\"+filename
+    # Creates a new folder as per the user
+    new_folder(filename)
 
-    first_row = ["Work","Time","Date","Year","E.Time"]
+    ##new_file = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\"+filename
+    ##first_row = ["Work","Time","Date","Year","E.Time"]
 
 
-    with open(new_file, 'a') as csvfile:
-        csvwriter = writer(csvfile, lineterminator='\n')
-        csvwriter.writerow(first_row)
-        csvfile.close()
+    #with open(new_file, 'a') as csvfile:
+    #    csvwriter = writer(csvfile, lineterminator='\n')
+    #    csvwriter.writerow(first_row)
+    #    csvfile.close()
 
     animate_processing()
 
@@ -179,7 +183,7 @@ if init_input == 2:
     if secured in protection_list_yes:
         print("Your credentials are as follows. : -\n", "USERNAME : ", username_input, "\n", "Password  : ", password)
     else:
-        print("Your credentials are as follows. : -\n", "USERNAME : ", username_input, "\n", "Password Protection  :  Off ", )
+        print("Your credentials are as follows. : -\n", "USERNAME : ", username_input, "\n", "Password Protection  :  Off \n\n", )
 
     print("You are being exited, Please restart the software and login using your credentials.\n")
 
@@ -242,6 +246,7 @@ elif init_input ==1 : # Login
 
 
 ## Login Signup System Designing Done. || Date : 28/07/2024 || Time : 2:22 am
+
 
 
 

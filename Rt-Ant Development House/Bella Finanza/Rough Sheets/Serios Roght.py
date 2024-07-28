@@ -1,6 +1,12 @@
-import pandas as pd
+import os
 
-df = pd.read_csv(r"C:\Users\imanu\PycharmProjects\BellaFinanza\Rough Sheets\Rough.csv")
+# Specify the path for the new folder
+new_folder_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\noname"
 
-print(df)
-print("")print("")
+# Create the folder
+os.mkdir(new_folder_path)
+
+
+def new_folder(new_folder_name):
+    new_folder_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
+    os.mkdir(new_folder_path)
