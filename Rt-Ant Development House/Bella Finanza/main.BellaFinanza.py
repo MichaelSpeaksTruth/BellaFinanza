@@ -28,12 +28,13 @@ backslash = "/"
 
 ## Function for Processing
 def animate_processing():
+    print("\n\n")
     dots = ['.   ', '..  ', '... ', '....', '.....','......','.......','........']
     for i in range(4):  # Loop through the animation frames
         sys.stdout.write('\rProcessing' + dots[i % len(dots)])
         sys.stdout.flush()
         time.sleep(0.8)  # Pause for half a second
-    print("\n\n\n")
+    print("\n\n")
 
 
 ## Function for 5 Line Space
@@ -41,9 +42,9 @@ def fiven():
     print("\n\n\n")
 
 ## Function for Wrong entry
-def invalid_entry(init_input):
+def menu_invalid_entry(init_input,input_list):
     while True:
-        if init_input not in list:
+        if init_input not in input_list:
             print("!! Error !!")
             init_input = input("Enter Menu Value. : ")
         else:
@@ -54,6 +55,69 @@ def invalid_entry(init_input):
 def new_folder(new_folder_name):
     new_folder_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
     os.mkdir(new_folder_path)
+
+##Function for ENCRYPTION
+def encrypt(xw):
+
+    new_passwd = ""
+    vacant_list = []
+    vacant_list = list(xw)
+    alpha_caps = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+    alpha_small= ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    alpha_encrypt_c = ['N','O','P','Q','R','S','T','U','V','W','X','Y','Z','A','B','C','D','E','F','G','H','I','J','K','L','M']
+    alpha_encrypt_s = ['n','o','p','q','r','s','t','u','v','w','x','y','z','a','b','c','d','e','f','g','h','i','j','k','l','m']
+    num_list = ["1","2","3","4","5","6","7","8","9","0"]
+    num_encrypt = ["6","7","8","9","0","1","2","3","4","5"]
+
+    for i in vacant_list:
+        if i in alpha_caps:
+            indx = alpha_caps.index(i)
+            new_passwd+=alpha_encrypt_c[indx]
+            xw = new_passwd
+        elif i in alpha_small:
+            indx = alpha_small.index(i)
+            new_passwd+=alpha_encrypt_s[indx]
+            xw = new_passwd
+        elif i in num_list:
+            indx = num_list.index(i)
+            new_passwd+=num_encrypt[indx]
+            xw = new_passwd
+        else:
+            new_passwd+=i
+            xw=new_passwd
+
+    return new_passwd
+
+def decrypt(x):
+    true_passwd = ''
+    vacant_list = []
+    vacant_list = list(x)
+    alpha_caps = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
+                  'U', 'V', 'W', 'X', 'Y', 'Z']
+    alpha_small = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+                   'u', 'v', 'w', 'x', 'y', 'z']
+    alpha_encrypt_c = ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F',
+                       'G', 'H', 'I', 'J', 'K', 'L', 'M']
+    alpha_encrypt_s = ['n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f',
+                       'g', 'h', 'i', 'j', 'k', 'l', 'm']
+    num_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    num_encrypt = ["6", "7", "8", "9", "0", "1", "2", "3", "4", "5"]
+
+    for i in vacant_list:
+        if i in alpha_encrypt_c:
+            indx = alpha_encrypt_c.index(i)
+            true_passwd += alpha_caps[indx]
+        elif i in alpha_encrypt_s:
+            indx = alpha_encrypt_s.index(i)
+            true_passwd +=alpha_small[indx]
+        elif i in num_encrypt:
+            indx = num_encrypt.index(i)
+            true_passwd+=num_list[indx]
+        else:
+            true_passwd+=i
+
+    return true_passwd
+
 
 
 ##  [ MAIN PROGRAM ] Starts Here,
@@ -69,14 +133,20 @@ animate_processing()
 
 
 print("1. Login \n\n2. Signup\n")
-list = [1,2]
+input_list = ['1','2']
 # 1. LOGIN
 # 2. Signup
 
 
-init_input = int(input("Enter Menu Value. : "))
+init_input = input("Enter Menu Value. : ")
 animate_processing()
-invalid_entry(init_input)
+while True:
+    if init_input not in input_list:
+        print("!! Error !!")
+        init_input = input("Enter Menu Value. : ")
+    else:
+        init_input = int(init_input)
+        break
 
 
 if init_input == 2:
@@ -137,10 +207,18 @@ if init_input == 2:
     #protection_list_no = ['N', 'n', 'NO','no','No']
 
     if secured in protection_list_yes:
+
         user_password = str(input("Create your password. : "))
+        user_password = str(user_password)
+        user_password = encrypt(user_password)
         local_signup_list.append(user_password)
+
+        print("Encrypting your Password...")
+        time.sleep(0.2)
+
     else:
         user_password = "*****"
+        user_password = encrypt(user_password)
         local_signup_list.append(user_password)
 
 
@@ -159,7 +237,7 @@ if init_input == 2:
 
     # Password Extractor
     password = str(df["password"][((len(df))-1)])
-
+    password = decrypt(password)
     # Creates a new folder as per the user
     new_folder(filename)
 
@@ -183,7 +261,7 @@ if init_input == 2:
 
 
     if secured in protection_list_yes:
-        print("Your credentials are as follows. : -\n", "USERNAME : ", username_input, "\n", "Password  : ", password)
+        print("Your credentials are as follows. : -\n", "USERNAME : ", username_input, "\n", "Password : ", password)
     else:
         print("Your credentials are as follows. : -\n", "USERNAME : ", username_input, "\n", "Password Protection  :  Off \n\n", )
 
@@ -228,11 +306,18 @@ elif init_input ==1 : # Login
 
     ##Password Verification
     if sec_status in protection_list_yes:
-        user_password_input = str(input("Enter your password. : "))  # secured
+        user_password_input = str(input("Enter your password : "))  # secured
+        #print("Entered Password (pending for verification): ",user_password_input ) #To Be Deleted
         df = pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\signup.csv")
+        user_passwd = df["password"][password_value]
+        #print("Extracted Password ( Encrypted password) : ",user_passwd) #To Be Deleted
+        user_passwd = decrypt(user_passwd)
+        #print("Extracted Password ( Decrypted password) : ", user_passwd)  # To Be Deleted
+
         while True:
-            if user_password_input != df["password"][password_value]:
+            if user_password_input != user_passwd:
                 print("!! Incorrect Password !!")
+                #print(user_password_input," NOT EQUAL TO ",user_passwd)  # To Be Deleted
                 user_password_input = str(input("Enter your password. : "))
             else:
                 break
