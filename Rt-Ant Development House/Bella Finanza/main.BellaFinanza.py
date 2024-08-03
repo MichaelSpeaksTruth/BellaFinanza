@@ -86,17 +86,21 @@ def new_folder(new_folder_name):
 
 
     ## Bank
-    #with open(os.path.join(path_bank,filename_bank),"w") as fp:
-    #    pass
 
-    #new_file_bank = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name + "\\"+filename_bank
+    with open(os.path.join(path_bank,filename_bank),"w") as fp:
+        pass
 
-    #first_row_bank = []
+    new_file_bank = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name + "\\"+filename_bank
 
-    #with open(new_file_bank, 'a') as csvfile:
-    #    csvwriter = writer(csvfile, lineterminator='\n')
-    #    csvwriter.writerow(first_row_bank)
-    #    csvfile.close()
+    first_row_bank = ["Bank" ]
+
+    with open(new_file_bank, 'a') as csvfile:
+        csvwriter = writer(csvfile, lineterminator='\n')
+        csvwriter.writerow(first_row_bank)
+        csvfile.close()
+
+    ##Banking Customization Folder
+
 
     ## Debt
     with open(os.path.join(path_debt,filename_debt),"w") as fp:
@@ -235,7 +239,7 @@ init_input = input("Enter Menu Value. : ")
 animate_processing()
 while True:
     if init_input not in input_list:
-        print("!! Error !!")
+        print("!! Error !!\n")
         init_input = input("Enter Menu Value. : ")
     else:
         init_input = int(init_input)
@@ -334,6 +338,8 @@ if init_input == 2:
     password = decrypt(password)
     # Creates a new folder as per the user
     new_folder(filename)
+    new_folder_path_procs_z1 = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + filename+"\\"+"Bank Management"
+    os.mkdir(new_folder_path_procs_z1)
 
 
 ##Previous Method is now discarded
@@ -470,16 +476,198 @@ elif init_input ==1 : # Login
                 print("Current Balance = ₹", current_balance)
 
         elif menu_var=="2":
-            print("Later")
+            print(" Welcome to Bank Management")
+            print("\n\n1. My Banking Accounts",
+                  "2. Add Banking Account(s)",
+                  "3. Exit ",sep="\n\n")
+
+            bank_valid_entries = ["1", "2", "3"]
+
+            input_bank_menu = str(input("\nEnter your choice : "))
+
+            while True:
+                if input_bank_menu not in bank_valid_entries:
+                    print("\n!! Invalid Entry !!")
+                    input_bank_menu = str(input("\n\nEnter your choice : "))
+                else:
+                    break
+
+            if input_bank_menu == "1":
+                bank_df = pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "bank.csv")
+                # print(df)
+
+                if len(bank_df) == 0:
+                    print("\nNo Bank Record Found, Please add your Banking Account(s) \n")
+                else:
+                    animate_processing()
+                    print("\n")
+                    bank_df_list = []
+
+                    for x in range(len(bank_df)):
+                        bank_procs_1 = str(bank_df["Bank"][x])
+                        bank_df_list.append(bank_procs_1)
+
+
+                    print("\n","Your Banking Account(s) are as below : \n\n",)
+                    print("Serial No.       Bank ")
+                    for i in range((len(bank_df_list))):
+                        print((i+1),"."+"             ",bank_df_list[i]) ##17
+                        bank_procs_2_valid_entries = []
+                        bank_procs_2 = (i+1)
+                        bank_procs_2 = str(bank_procs_2)
+                        bank_procs_2_valid_entries.append(bank_procs_2)
+                    print("\n")
+
+                    bank_procs_3 = str(input("Enter serial no. of the Bank : "))
+
+                    while True:
+                        if bank_procs_3 not in bank_procs_2_valid_entries :
+                            print("!! Incorrect !!")
+                            bank_procs_3 = str(input("Enter serial no. of the Bank : "))
+                        else:
+                            bank_procs_3 = int(bank_procs_3)
+                            bank_procs_4 = str(bank_df_list[(bank_procs_3-1)])
+
+                            break
+
+
+                            ###### DEVELOP an algorithm to open the file of specific bank as requested by the user.  ## Bank Management
+
+                    user_bank_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "Bank Management" +"\\"+bank_procs_4+".csv"
+                    df_user_bank_records = pd.read_csv(user_bank_path)
+                    len_user_bank_records = len(df_user_bank_records)
+
+                    bank_procs_5 = 0
+                    for i in range(len_user_bank_records):
+                        bank_procs_5 += df_user_bank_records["Amount"][i]
+
+
+                    latest_bank_balance = bank_procs_5
+
+                    print("Your",bank_procs_4,"account_balance is : "," ₹ ",bank_procs_5)
+                    fiven()
+                    print("Bank Records are as folows :- \n\n")
+
+                    bank_procs_3_ext_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "Bank Management" +"\\"+bank_procs_4+".csv"
+
+                    df_bank_procs_3_ext_path = pd.read_csv(bank_procs_3_ext_path)
+
+                    if len(df_bank_procs_3_ext_path) == 0 :
+                        print("!!    No Record Found / No Transaction(s) to show    !!")
+                    else:
+                        print("D a t e    ||    Y E A R    ||    T i m e    ||    D / C    ||    Transactions    \n")
+
+                        for i in range(len_user_bank_records):
+                            print(df_user_bank_records["Date"][i], "      ", "    ", df_user_bank_records["Year"][i],
+                                  "       ", "     ", df_user_bank_records["Time"][i], "     ", "      ",
+                                  df_user_bank_records["Type"][i], "      ", "     ₹ ",
+                                  df_user_bank_records["Amount"][i])
+
+
+                             ## Finished Banking Records display system || 4/08/2024 ||  3:22 A.M  ||  Sunday
+
+
+
+
+            elif input_bank_menu == "2":
+                fiven()
+                print("DISCLAIMER : We don't ask for your bank account number or any other private info(s). ")
+                fiven()
+
+                bank_df = pd.read_csv(
+                    r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "bank.csv")
+                # print(df)
+
+                if len(bank_df) == 0:
+                    print("AS OF NOW","No Bank Record(s) Found, Please add your Banking Account(s) in the next step.","", sep ="\n")
+
+
+                else:
+                    animate_processing()
+                    print("\n")
+                    bank_df_list = []
+
+                    for x in range(len(bank_df)):
+                        bank_procs_1 = str(bank_df["Bank"][x])
+                        bank_df_list.append(bank_procs_1)
+
+                    print("\n", "Your Banking Account(s) are as below : \n\n", )
+                    print("Serial No.       Bank ")
+                    for i in ((len(bank_df_list) + 1)):
+                        print("(" + (i + 1) + "." + ")" + "             " + bank_df_list[i])  ##1
+                    print("if your preferred account is NOT available, Register your BANK.\n")
+                    print("\n")
+
+
+
+                print("SUB-MENU (BANKING DEPT.)\n",
+                      "1. Register your BANK ACCOUNT ",
+                      "2. Exit this sub-menu (Banking Dept.)",sep="\n\n")
+
+                print("\n\n")
+
+                bank_valid_entries_procs_2 = ["1","2"]
+
+                bank_valid_entries_procs_3 = str(input("Select your Task. : "))
+                while True:
+                    if bank_valid_entries_procs_3 not in bank_valid_entries_procs_2:
+                        print("!! INVALID Input !!\n\n")
+                        bank_valid_entries_procs_3 = str(input("Select your Task. : "))
+                    else:
+                        break
+
+                if bank_valid_entries_procs_3 == "1":
+                    bank_name = str(input("Enter BANK name : "))
+
+                    bank_name_list = []
+                    bank_name_list.append(bank_name)
+
+                    ## Update bank.csv List
+                    bank_new_file = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "bank.csv"
+                    with open(bank_new_file, 'a') as csvfile:
+                        csvwriter = writer(csvfile, lineterminator='\n')
+                        csvwriter.writerow(bank_name_list)
+                        csvfile.close()
+
+
+                    ##Prepare file of specific Bank for user
+
+                    filename_procs_1 = bank_name+".csv"
+                    user_bank_path_procs_1 = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "Bank Management"
+
+                    with open(os.path.join(user_bank_path_procs_1, filename_procs_1), "w") as fp:
+                        pass
+
+                    filename_procs_2 = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\"+"Bank Management"+"\\" + filename_procs_1
+
+                    first_row_bank_procs_2 = ["Date","Year","Time", "Type","Amount"]
+
+                    with open(filename_procs_2, 'a') as csvfile:
+                        csvwriter = writer(csvfile, lineterminator='\n')
+                        csvwriter.writerow(first_row_bank_procs_2)
+                        csvfile.close()
+                else:
+                    pass
+
+
+            elif input_bank_menu == "3":
+                pass
+
+
+
+        ## Finished Bank Management System  || 4/08/2024 ||  5:22 A.M  ||  Sunday
+
+
 
         elif menu_var == "3":
             new_file = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "debt.csv"
             print(" Welcome to Debt Management")
             animate_processing()
-            debt_valid_entries = ["1","2","3"]
+            debt_valid_entries = ["1","2","3","4"]
             print("\n\n1. Take Debt",
                   "2. Re-Pay Debt",
-                  "3. View Debt",sep="\n\n")
+                  "3. View Debt",
+                  "4. Exit",sep="\n\n")
 
             input_debt = str(input("\nEnter your choice : "))
 
@@ -560,7 +748,7 @@ elif init_input ==1 : # Login
 
                 debt_carry_forwarder.append(date)
                 debt_carry_forwarder.append(t1)
-                debt_carry_forwarder.append(ye)
+                debt_carry_forwarder.append(dy)
 
                 debt = int(input(" Enter Re-Pay Debt Amount : ₹ "))
 
@@ -588,7 +776,7 @@ elif init_input ==1 : # Login
                 debt_amount = 0
 
                 if len(debt_df) == 0:
-                    print("\nNo Record Found")
+                    print("No Record Found")
                 else:
 
                     debt_df_list = []
@@ -605,6 +793,9 @@ elif init_input ==1 : # Login
                         #print("debt amount check : ₹", debt_amount)  # To Be Deleted
 
                     print("\nCurrent Debt Amount = ₹", debt_amount)
+
+            elif input_debt == "4":
+                pass
 
         elif menu_var == "4":
             pass

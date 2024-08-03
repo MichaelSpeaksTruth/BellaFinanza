@@ -1,13 +1,3 @@
-a  = str(input("enter a number : "))
-print(a)
+import pandas as pd
 
-print("Convertion")
-
-a = int(a)
-
-print("AFter conversion : ",a)
-
-b = 8
-b= int(8)
-
-print('A + B = ',a+b)
+print((pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\SampleCSVFile_2kb.csv")))
