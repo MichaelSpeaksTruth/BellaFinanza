@@ -10,7 +10,7 @@ import csv
 from csv import writer
 from csv import reader
 import os
-import playsound as ps
+#import playsound as ps
 
 
 ## Predefined List
@@ -56,7 +56,7 @@ def menu_invalid_entry(init_input,input_list):
 
 ##Function for new folder
 def new_folder(new_folder_name):
-    new_folder_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
+    new_folder_path = r".\Server"+"\\"+new_folder_name
     os.mkdir(new_folder_path)
 
     #print("\nCheckpoint 1\n")
@@ -65,11 +65,11 @@ def new_folder(new_folder_name):
 
     #print("\nCheckpoint 2\n")
 
-    path_balance  = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
-    path_bank     = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
-    path_debt     = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
-    path_expense  = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
-    path_transac  = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name
+    path_balance  = r".\Server"+"\\"+new_folder_name
+    path_bank     = r".\Server"+"\\"+new_folder_name
+    path_debt     = r".\Server"+"\\"+new_folder_name
+    path_expense  = r".\Server"+"\\"+new_folder_name
+    path_transac  = r".\Server"+"\\"+new_folder_name
 
     filename_balance = "balance"+".csv"
     filename_bank = "bank"+".csv"
@@ -81,7 +81,7 @@ def new_folder(new_folder_name):
     with open(os.path.join(path_balance,filename_balance),"w") as fp:
         pass
 
-    new_file_balance = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name + "\\"+filename_balance
+    new_file_balance = r".\Server"+"\\"+new_folder_name + "\\"+filename_balance
 
     first_row_balance = ["Time","Date","Year","Balance"]
 
@@ -96,7 +96,7 @@ def new_folder(new_folder_name):
     with open(os.path.join(path_bank,filename_bank),"w") as fp:
         pass
 
-    new_file_bank = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name + "\\"+filename_bank
+    new_file_bank = r".\Server"+"\\"+new_folder_name + "\\"+filename_bank
 
     first_row_bank = ["Bank" ]
 
@@ -112,7 +112,7 @@ def new_folder(new_folder_name):
     with open(os.path.join(path_debt,filename_debt),"w") as fp:
         pass
 
-    new_file_debt = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name + "\\"+filename_debt
+    new_file_debt = r".\Server"+"\\"+new_folder_name + "\\"+filename_debt
 
     first_row_debt = ["Time","Date","Year","Debts","Category","Note" ]
 
@@ -125,7 +125,7 @@ def new_folder(new_folder_name):
     with open(os.path.join(path_expense,filename_expense),"w") as fp:
         pass
 
-    new_file_expense = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name + "\\"+filename_expense
+    new_file_expense = r".\Server"+"\\"+new_folder_name + "\\"+filename_expense
 
     first_row_expense = ["Time","Date","Year","Expenses","Note"]
 
@@ -139,7 +139,7 @@ def new_folder(new_folder_name):
     with open(os.path.join(path_transac,filename_transac),"w") as fp:
         pass
 
-    new_file_transac = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+new_folder_name + "\\"+filename_transac
+    new_file_transac = r".\Server"+"\\"+new_folder_name + "\\"+filename_transac
 
     first_row_transac = ["Time","Date","Year","Transactions","Category"]
 
@@ -261,7 +261,7 @@ if init_input == 2:
     ct = datetime.datetime.now()
     date = str(ct.date())
 
-    df=pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\signup.csv")
+    df=pd.read_csv(r".\Server\signup.csv")
 
     df_str =str(len(df)+1)
 
@@ -291,7 +291,7 @@ if init_input == 2:
 
 ## USERNAME
 
-    df = pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\signup.csv")
+    df = pd.read_csv(r".\Server\signup.csv")
 
     username_list = [df["username"][x] for x in range(len(df))]
 
@@ -329,17 +329,17 @@ if init_input == 2:
         local_signup_list.append(user_password)
 
 
-    with open(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\signup.csv","a") as csvfile:
+    with open(r".\Server\signup.csv","a") as csvfile:
         csvwriter = writer(csvfile,lineterminator = "\n")
         csvwriter.writerow(local_signup_list)
         csvfile.close()
 
 
-    df= pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\signup.csv")
+    df= pd.read_csv(r".\Server\signup.csv")
 
 
     # creating a file for newly registered members.
-    path = (r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server")
+    path = (r".\Server")
     member_id_extracted= df["tag"][((len(df))-1)]
     filename = member_id_extracted
 
@@ -351,7 +351,7 @@ if init_input == 2:
 
     #print("\nCheckpoint 3\n")
 
-    new_folder_path_procs_z1 = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + filename+"\\"+"Bank Management"
+    new_folder_path_procs_z1 = r".\Server" + "\\" + filename+"\\"+"Bank Management"
     os.mkdir(new_folder_path_procs_z1)
 
 
@@ -389,7 +389,7 @@ if init_input == 2:
 
 elif init_input ==1 : # Login
 
-    df = pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\signup.csv")
+    df = pd.read_csv(r".\Server\signup.csv")
 
     username_list = [df["username"][x] for x in range(len(df))]
 
@@ -421,7 +421,7 @@ elif init_input ==1 : # Login
     if sec_status in protection_list_yes:
         user_password_input = str(input("Enter your password : "))  # secured
         #print("Entered Password (pending for verification): ",user_password_input ) #To Be Deleted
-        df = pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server\signup.csv")
+        df = pd.read_csv(r".\Server\signup.csv")
         user_passwd = df["password"][password_value]
         #print("Extracted Password ( Encrypted password) : ",user_passwd) #To Be Deleted
         user_passwd = decrypt(user_passwd)
@@ -476,7 +476,7 @@ elif init_input ==1 : # Login
         if menu_var == "1":
             #print("Finame : ",finame)
 
-            #df = pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server"+"\\"+finame+"\\"+"balance.csv")
+            #df = pd.read_csv(r".\Server"+"\\"+finame+"\\"+"balance.csv")
             #print(df)
 
             print("AS OF NOW, This function is not available.")
@@ -512,16 +512,15 @@ elif init_input ==1 : # Login
                     else:
                         break
                 if input_bank_menu == "1":
-                    bank_df = pd.read_csv(
-                        r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "bank.csv")
+                    bank_df = pd.read_csv(r".\Server" + "\\" + finame + "\\" + "bank.csv")
                     # print(df)
 
                     if len(bank_df) == 0:
                         print("\nNo Bank Record Found, Please add your Banking Account(s) \n")
-                        print("\n...Testing 27/10/2024/Bank_Management...(1)\n")
+                        #print("\n...Testing 27/10/2024/Bank_Management...(1)\n")###
 
                     else:
-                        print("\n...Testing 27/10/2024/Bank_Management...(2)\n")
+                        #print("\n...Testing 27/10/2024/Bank_Management...(2)\n")###
                         animate_processing()
                         print("\n")
                         bank_df_list = []
@@ -554,7 +553,7 @@ elif init_input ==1 : # Login
 
                                 ###### DEVELOP an algorithm to open the file of specific bank as requested by the user.  ## Bank Management
 
-                        user_bank_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "Bank Management" + "\\" + bank_procs_4 + ".csv"
+                        user_bank_path = r".\Server" + "\\" + finame + "\\" + "Bank Management" + "\\" + bank_procs_4 + ".csv"
                         df_user_bank_records = pd.read_csv(user_bank_path)
                         len_user_bank_records = len(df_user_bank_records)
 
@@ -568,7 +567,7 @@ elif init_input ==1 : # Login
                         fiven()
                         print("Bank Records are as folows :- \n\n")
 
-                        bank_procs_3_ext_path = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "Bank Management" + "\\" + bank_procs_4 + ".csv"
+                        bank_procs_3_ext_path = r".\Server" + "\\" + finame + "\\" + "Bank Management" + "\\" + bank_procs_4 + ".csv"
 
                         df_bank_procs_3_ext_path = pd.read_csv(bank_procs_3_ext_path)
 
@@ -596,7 +595,7 @@ elif init_input ==1 : # Login
                     fiven()
 
                     bank_df = pd.read_csv(
-                        r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "bank.csv")
+                        r".\Server" + "\\" + finame + "\\" + "bank.csv")
                     # print(df)
 
                     if len(bank_df) == 0:
@@ -644,7 +643,7 @@ elif init_input ==1 : # Login
                         bank_name_list.append(bank_name)
 
                         ## Update bank.csv List
-                        bank_new_file = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "bank.csv"
+                        bank_new_file = r".\Server" + "\\" + finame + "\\" + "bank.csv"
                         with open(bank_new_file, 'a') as csvfile:
                             csvwriter = writer(csvfile, lineterminator='\n')
                             csvwriter.writerow(bank_name_list)
@@ -653,12 +652,12 @@ elif init_input ==1 : # Login
                         ##Prepare file of specific Bank for user
 
                         filename_procs_1 = bank_name + ".csv"
-                        user_bank_path_procs_1 = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "Bank Management"
+                        user_bank_path_procs_1 = r".\Server" + "\\" + finame + "\\" + "Bank Management"
 
                         with open(os.path.join(user_bank_path_procs_1, filename_procs_1), "w") as fp:
                             pass
 
-                        filename_procs_2 = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "Bank Management" + "\\" + filename_procs_1
+                        filename_procs_2 = r".\Server" + "\\" + finame + "\\" + "Bank Management" + "\\" + filename_procs_1
 
                         first_row_bank_procs_2 = ["Date", "Year", "Time", "Type", "Amount"]
 
@@ -667,11 +666,11 @@ elif init_input ==1 : # Login
                             csvwriter.writerow(first_row_bank_procs_2)
                             csvfile.close()
                     else:
-                        print("\n...Testing 27/10/2024/Bank_Management...(3)\n")
+                        ##print("\n...Testing 27/10/2024/Bank_Management...(3)\n")###
                         pass
 
                 elif input_bank_menu == "3":
-                    print("\n...Testing 27/10/2024/Bank_Management...(4)\n")
+                    ##print("\n...Testing 27/10/2024/Bank_Management...(4)\n")###
                     break
 
 
@@ -681,7 +680,7 @@ elif init_input ==1 : # Login
 
 
         elif menu_var == "3":
-            new_file = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "debt.csv"
+            new_file = r".\Server" + "\\" + finame + "\\" + "debt.csv"
             print(" Welcome to Debt Management")
             animate_processing()
             debt_valid_entries = ["1","2","3","4"]
@@ -793,7 +792,7 @@ elif init_input ==1 : # Login
 
             elif input_debt == "3":
 
-                debt_df = pd.read_csv(r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "debt.csv")
+                debt_df = pd.read_csv(r".\Server" + "\\" + finame + "\\" + "debt.csv")
                 debt_amount = 0
 
                 if len(debt_df) == 0:
@@ -900,7 +899,7 @@ elif init_input ==1 : # Login
                 pass
 
         elif menu_var == "5":
-            new_file_transac = r"D:\Delvitide Industries Private Limited\Rt-Ant Development House\Bella Finanza\Server" + "\\" + finame + "\\" + "transac.csv"
+            new_file_transac = r".\Server" + "\\" + finame + "\\" + "transac.csv"
             transac_df = pd.read_csv(new_file_transac)
             len_transac_df = len(transac_df)
 
